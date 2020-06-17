@@ -7,6 +7,18 @@ public class Product {
     private Double prize;
     private Integer amount;
 
+    //所属的用户的id
+    private Integer userId;
+
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -46,6 +58,8 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", prize=" + prize +
                 ", amount=" + amount +
+                ", userId=" + userId +
                 '}';
     }
+
 }

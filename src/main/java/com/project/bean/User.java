@@ -1,10 +1,23 @@
 package com.project.bean;
 
+import java.util.List;
+
 public class User {
 
     private Integer id;
     private String username;
     private String password;
+
+    //一个user有多个product
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public Integer getId() {
         return id;
@@ -36,6 +49,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

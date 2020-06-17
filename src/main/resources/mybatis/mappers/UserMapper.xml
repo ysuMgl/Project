@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.UserDao">
+    
+    <resultMap id="userMap" type="com.project.bean.User">
+        <id property="id" column="u_id"/>
+        <result property="username" column="u_username"/>
+        <result property="password" column="u_password"/>
+        <collection property="products" ofType="com.project.bean.Product">
+            <id property="id" column="p_id"/>
+            <result property="name" column="p_name"/>
+            <result property="amount" column="p_amount"/>
+            <result property="prize" column="p_prize"/>
+            <result property="userId" column="user_id"/>
+        </collection>
+    </resultMap>
 
-    <select id="getById" parameterType="INTEGER" resultType="user">
-        select *
-        from t_user
-        where  id = #{id}
+    <select id="getById" parameterType="INTEGER" resultMap="userMap">
+        SELECT u.*,p.*
+        FROM t_user u LEFT JOIN t_product p
+        ON u.u_id = p.user_id
+        WHERE u_id = #{uid}
     </select>
 
     <select id="getAll"  resultType="user">
